@@ -10,7 +10,7 @@ export class AuthService {
   private adminProfileModel: UserModel = new UserModel();
   _profileModel = new BehaviorSubject<UserModel>(new UserModel());
   public isUserAuthenticated(): boolean {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('admintoken') ? localStorage.getItem('admintoken') : localStorage.getItem('token');
     // Check whether the token is expired and return
     // true or false
     return token != null && token != undefined;

@@ -16,7 +16,7 @@ export class UserService {
   getUserList(
     requestParamModel: RequestParamModel
   ): Observable<PaginationModel<IUser>> {
-    return this.baseService.get("user", requestParamModel).pipe(
+    return this.baseService.get("user", requestParamModel,true,true).pipe(
       map<HttpResponse<any>, PaginationModel<IUser>>(
         (response: any) => {
           const userList = new PaginationModel<IUser>();
@@ -38,7 +38,7 @@ export class UserService {
     userId: number,
     requestParamModel: RequestParamModel
   ): Observable<IUser> {
-    return this.baseService.get("user/" + userId, requestParamModel).pipe(
+    return this.baseService.get("user/" + userId, requestParamModel,true,true).pipe(
       map<HttpResponse<any>, IUser>(
         (response) => {
           return response.body.data as IUser;
@@ -51,9 +51,9 @@ export class UserService {
   }
 
   saveUser(userModel: any): Observable<string> {
-    if (userModel.get("_id") !== undefined && userModel.get("_id") !== null) {
+    if (userModel._id !== undefined && userModel._id !== null) {
       return this.baseService
-        .uploadPut("user/" + userModel.get("_id"), userModel)
+        .uploadPut("user/" + userModel._id, userModel, true)
         .pipe(
           map<any, string>(
             (response) => {
@@ -67,7 +67,7 @@ export class UserService {
           )
         );
     } else {
-      return this.baseService.uploadPost("user", userModel).pipe(
+      return this.baseService.uploadPost("user", userModel, true, true).pipe(
         map<any, string>(
           (response) => {
             userModel = response.data as IUser;
@@ -81,7 +81,7 @@ export class UserService {
     }
   }
   deleteUser(_id: string) {
-    return this.baseService.delete("user/" + _id).pipe(
+    return this.baseService.delete("user/" + _id,true,true).pipe(
       map<any, number>(
         (response) => {
           return response.data;

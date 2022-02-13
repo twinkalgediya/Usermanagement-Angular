@@ -1,10 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { AdminConstants } from 'src/app/core/constants/admin.constants';
-import { RequestParamModel } from 'src/app/core/model/requestParamModel.model';
-import { UserService } from 'src/app/core/service/admin-api/user/user.service';
+import { Component, OnInit } from "@angular/core";
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
+import { AdminConstants } from "src/app/core/constants/admin.constants";
+import { RequestParamModel } from "src/app/core/model/requestParamModel.model";
+import { UserService } from "src/app/core/service/admin-api/user/user.service";
 
 @Component({
   selector: "app-admin-user-create",
@@ -36,18 +42,18 @@ export class AdminUserCreateComponent implements OnInit {
           .getUserAllData(params.id, new RequestParamModel())
           .subscribe((data) => {
             this.userModel = data;
-            console.log('data: ', data);
+            console.log("data: ", data);
             this.registrationForm.patchValue(data);
-               if (this.userModel.strength.length > 1) {
-                 const length = this.userModel.strength.length - 1;
-                 for (let i = 0; i < length; i++) {
-                   this.strength.push(this.createStrength());
-                   this.strength.controls[i + 1].patchValue({name:this.userModel.strength[i+1].name});
-                 }
-               }
+            if (this.userModel.strength.length > 1) {
+              const length = this.userModel.strength.length - 1;
+              for (let i = 0; i < length; i++) {
+                this.strength.push(this.createStrength());
+                this.strength.controls[i + 1].patchValue({
+                  name: this.userModel.strength[i + 1].name,
+                });
+              }
+            }
           });
-
-       
       }
     });
   }
@@ -73,9 +79,20 @@ export class AdminUserCreateComponent implements OnInit {
       return;
     }
     this.isLoading = true;
-    this.userService.saveUser(this.registrationForm.value).subscribe(
+    let json = {
+      ...this.registrationForm.value,
+    };
+    if (this.userModel) {
+      json._id = this.userModel._id;
+    }
+    this.userService.saveUser(json).subscribe(
       (data) => {
-        this.alertService.success(AdminConstants.USER_ADDED_SUCCESS);
+        if (this.userModel) {
+          this.alertService.success(AdminConstants.USER_EDIT_SUCCESS);
+        } else {
+          this.alertService.success(AdminConstants.USER_ADDED_SUCCESS);
+        }
+
         this.router.navigate(["/admin/users"]);
       },
       (error: any) => {
