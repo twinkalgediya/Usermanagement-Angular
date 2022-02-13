@@ -8,7 +8,7 @@ import { RequestParamModel } from 'src/app/core/model/requestParamModel.model';
 import { BaseService } from '../../base/base.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class UserService {
   constructor(public baseService: BaseService) {}
@@ -16,7 +16,7 @@ export class UserService {
   getUserList(
     requestParamModel: RequestParamModel
   ): Observable<PaginationModel<IUser>> {
-    return this.baseService.get('user', requestParamModel).pipe(
+    return this.baseService.get("user", requestParamModel).pipe(
       map<HttpResponse<any>, PaginationModel<IUser>>(
         (response: any) => {
           const userList = new PaginationModel<IUser>();
@@ -32,14 +32,27 @@ export class UserService {
     );
   }
 
-  // getUserById(id: string): Observable<IUser> {
-  //   return;
-  // }
+  // get single user details.
+  getUserAllData(
+    userId: number,
+    requestParamModel: RequestParamModel
+  ): Observable<IUser> {
+    return this.baseService.get("user/" + userId, requestParamModel).pipe(
+      map<HttpResponse<any>, IUser>(
+        (response) => {
+          return response.body.data as IUser;
+        },
+        (err:any) => {
+          return err;
+        }
+      )
+    );
+  }
 
   saveUser(userModel: any): Observable<string> {
-    if (userModel.get('_id') !== undefined && userModel.get('_id') !== null) {
+    if (userModel.get("_id") !== undefined && userModel.get("_id") !== null) {
       return this.baseService
-        .uploadPut('user/' + userModel.get('_id'), userModel)
+        .uploadPut("user/" + userModel.get("_id"), userModel)
         .pipe(
           map<any, string>(
             (response) => {
@@ -47,32 +60,32 @@ export class UserService {
 
               return userModel._id;
             },
-            (err:any) => {
+            (err: any) => {
               return err;
             }
           )
         );
     } else {
-      return this.baseService.uploadPost('user', userModel).pipe(
+      return this.baseService.uploadPost("user", userModel).pipe(
         map<any, string>(
           (response) => {
             userModel = response.data as IUser;
             return userModel._id;
           },
-          (err:any) => {
+          (err: any) => {
             return err;
           }
         )
       );
     }
   }
-  deleteUser(_id:string) {
-    return this.baseService.delete('user/' + _id).pipe(
+  deleteUser(_id: string) {
+    return this.baseService.delete("user/" + _id).pipe(
       map<any, number>(
         (response) => {
           return response.data;
         },
-        (err:any) => {
+        (err: any) => {
           return err;
         }
       )

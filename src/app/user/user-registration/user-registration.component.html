@@ -112,35 +112,36 @@
       </div>
     </div>
     <label for="exampleInputmobile1">strength</label>
+    <div class="add-strngth" (click)="addStrngth()">
+      +
+    </div>
     <div
       class="form-group m-1"
       formArrayName="strength"
       *ngFor="let t of strength.controls; let i = index"
     >
       <div class="row" [formGroupName]="i">
+
         <input
-          formControlName="mobile"
-          type="mobile"
+          formControlName="name"
+          type="name"
           [ngClass]="{
             'is-invalid':
-              (f.mobile.invalid && (f.mobile.touched || submitted)) ||
-              f.mobile.errors?.apiError,
-            'is-valid': (f.mobile.touched || submitted) && !f.mobile.invalid
+              (strength.controls[i].get('name')?.invalid && (strength.controls[i].get('name')?.touched || submitted)) ||
+              strength.controls[i].get('name')?.errors?.apiError,
+            'is-valid': (strength.controls[i].get('name')?.touched || submitted) && !strength.controls[i].get('name')?.invalid
           }"
           class="form-control"
           id="exampleInputmobile1"
-          placeholder="mobile"
+          placeholder=""
         />
+        <div (click)="OnRemove(i)">-remove</div>
         <div
-          *ngIf="{
-            'is-invalid':
-              (f.mobile.invalid && (f.mobile.touched || submitted)) ||
-              f.mobile.errors?.apiError,
-            'is-valid': (f.mobile.touched || submitted) && !f.mobile.invalid
-          }"
+          *ngIf="              (strength.controls[i].get('name')?.invalid && (strength.controls[i].get('name')?.touched || submitted)) ||
+              strength.controls[i].get('name')?.errors?.apiError"
           class="invalid-feedback"
         >
-          <div *ngIf="f?.mobile?.errors?.required">mobile is required</div>
+          <div *ngIf="strength.controls[i].get('name')?.errors?.required">strength is required</div>
         </div>
       </div>
     </div>
