@@ -35,14 +35,6 @@
               *ngFor="let column of columns; let i = index; trackBy: trackByFn"
             >
               <ng-container *ngIf="column.visible">
-                <ng-container *ngIf="column.property == 'profile_picture'">
-                  <th
-                    class="bg-white text-left header_column_{{
-                      column.property
-                    }}"
-                    [style.width.px]="column_profile_picture"
-                  ></th>
-                </ng-container>
                 <ng-container *ngIf="column.property == 'email'">
                   <th
                     class="bg-white text-left header_column_{{

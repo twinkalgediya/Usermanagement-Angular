@@ -49,17 +49,6 @@ export class AdminUserListComponent implements OnInit {
           column_width: 100,
         },
         {
-          name: 'Profile',
-          property: 'profile_picture',
-          visible: true,
-          datatype: 'string',
-          searchable: true,
-          searchfield: 'profile_picture',
-          sortOrder: '',
-          isShowinHideList: true,
-          column_width: 100,
-        },
-        {
           name: 'Email',
           property: 'email',
           visible: true,

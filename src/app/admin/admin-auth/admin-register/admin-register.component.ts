@@ -30,7 +30,6 @@ export class AdminRegisterComponent implements OnInit {
       name: new FormControl('', [Validators.required]),
       mobile: new FormControl('', [Validators.required]),
       gender: new FormControl('', [Validators.required]),
-      profile_picture: new FormControl('', []),
     });
   }
 
