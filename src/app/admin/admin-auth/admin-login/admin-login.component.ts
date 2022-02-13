@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { AdminAuthService } from 'src/app/core/service/admin-api/admin/admin-auth.service';
+import { AuthService } from 'src/app/core/service/auth/auth.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -12,7 +16,8 @@ export class AdminLoginComponent implements OnInit {
   public submitted: boolean = false;
   public isLoading: boolean = false;
   //#endregion
-  constructor(public fb: FormBuilder) {}
+  constructor(public fb: FormBuilder, public adminAuth: AdminAuthService, public alertService: ToastrService, public router: Router,
+    public adminAuthService: AuthService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -35,5 +40,25 @@ export class AdminLoginComponent implements OnInit {
       return;
     }
     this.isLoading = true;
+    var loginModel = {
+      email: this.f.email.value,
+      password: this.f.password.value,
+    }
+    this.adminAuth.login(loginModel).subscribe(
+      (sessionModel: any) => {
+        if (sessionModel.access_token !== undefined) {
+          this.adminAuthService.clearToken();
+          localStorage.setItem("admintoken", sessionModel.access_token);
+          this.adminAuthService.setAdminDetail(sessionModel);
+          this.adminAuthService._profileModel.next(sessionModel);
+        }
+      }, (error: any) => {
+        if (error.status == 422) {
+          this.alertService.error(error, 'Error');
+        } else if (error.status == 401) {
+        }
+        this.isLoading = false;
+        this.router.navigate(['/admin/login']);
+      });
   }
 }
