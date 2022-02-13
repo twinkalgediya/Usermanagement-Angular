@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdminAuthService } from 'src/app/core/service/admin-api/admin/admin-auth.service';
 
 @Component({
   selector: 'app-admin-register',
@@ -13,7 +14,7 @@ export class AdminRegisterComponent implements OnInit {
   public submitted: boolean = false;
   public isLoading: boolean = false;
   //#endregion
-  constructor(public fb: FormBuilder, public router: Router) {}
+  constructor(public fb: FormBuilder, public router: Router, public adminAuth: AdminAuthService) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -40,14 +41,14 @@ export class AdminRegisterComponent implements OnInit {
       return;
     }
     this.isLoading = true;
-    // this.userAuthService.register({}).subscribe(
-    //   (data) => {
-    //     console.log('data: ', data);
-    //     this.router.navigate(['/login']);
-    //   },
-    //   (error: any) => {
-    //     console.log('error: ', error);
-    //   }
-    // );
+    this.adminAuth.register(this.registrationForm.value).subscribe(
+      (data: any) => {
+        console.log('data: ', data);
+        this.router.navigate(['/users']);
+      },
+      (error: any) => {
+        console.log('error: ', error);
+      }
+    );
   }
 }
