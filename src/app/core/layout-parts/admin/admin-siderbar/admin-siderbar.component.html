@@ -1,0 +1,16 @@
+ <div class="sidebar-navigation main-div-sidebar">
+    <div class="sidebar-navigation-min">
+      <ul>
+      <li  [ngClass]="{'manu-option-active': routerUrl == '/admin/users'}">
+           <a  class="manu-option" [ngClass]="{'manu-option-active': routerUrl == '/admin/users'}" href="javascript:void(0)" routerLink="'/admin/user'" 
+            >
+            <span>
+              <span class="sidebar-icon-wrapper"></span>
+              <span>Users</span>
+              <!-- <span *ngIf="menu.badge" class="badge badge-pill" [ngClass]="menu.badge.class">{{menu.badge.text}}</span> -->
+            </span>
+          </a>
+      </li>
+      </ul>
+    </div>
+  </div>

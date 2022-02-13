@@ -1,0 +1,204 @@
+<div class="card card-box mb-5">
+  <div class="table-responsive">
+    <table
+      data-role="table"
+      data-mode="columntoggle"
+      id="my-table"
+      class="table table-resizable table-bordered table-hover text-nowrap mb-0"
+    >
+      <thead>
+        <tr class="header_row">
+          <ng-container *ngIf="columns">
+            <ng-container *ngFor="let column of columns; let i = index">
+              <ng-container *ngIf="column.visible">
+                <ng-container>
+                  <th
+                    class="bg-white text-left header_column header_column_{{
+                      column.property
+                    }}"
+                    [style.width.px]="column.column_width"
+                  >
+                    <app-table-sort-column
+                      [index]="i"
+                      [column]="column"
+                      (sortColumnChanges)="sortColumnChanges($event)"
+                    ></app-table-sort-column>
+                  </th>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </tr>
+        <tr>
+          <ng-container *ngIf="columns">
+            <ng-container
+              *ngFor="let column of columns; let i = index; trackBy: trackByFn"
+            >
+              <ng-container *ngIf="column.visible">
+                <ng-container *ngIf="column.property == 'profile_picture'">
+                  <th
+                    class="bg-white text-left header_column_{{
+                      column.property
+                    }}"
+                    [style.width.px]="column_profile_picture"
+                  ></th>
+                </ng-container>
+                <ng-container *ngIf="column.property == 'email'">
+                  <th
+                    class="bg-white text-left header_column_{{
+                      column.property
+                    }}"
+                    [style.width.px]="column_email"
+                  >
+                    <input
+                      class="form-control"
+                      [(ngModel)]="column.searchValue"
+                      placeholder="Email"
+                      type="text"
+                      (change)="onFilterChange()"
+                    />
+                  </th>
+                </ng-container>
+                <ng-container *ngIf="column.property == 'mobile'">
+                  <th
+                    class="bg-white text-left header_column_{{
+                      column.property
+                    }}"
+                    [style.width.px]="column_mobile"
+                  >
+                    <input
+                      class="form-control"
+                      [(ngModel)]="column.searchValue"
+                      placeholder="Mobile"
+                      type="text"
+                      (change)="onFilterChange()"
+                    />
+                  </th>
+                </ng-container>
+                <ng-container *ngIf="column.property == 'full_name'">
+                  <th
+                    class="bg-white text-left header_column_{{
+                      column.property
+                    }}"
+                    [style.width.px]="column_full_name"
+                  >
+                    <input
+                      class="form-control"
+                      [(ngModel)]="column.searchValue"
+                      placeholder="User Name"
+                      type="text"
+                      (change)="onFilterChange()"
+                    />
+                  </th>
+                </ng-container>
+                <ng-container *ngIf="column.property == 'status'">
+                  <th
+                    class="bg-white text-left header_column_{{
+                      column.property
+                    }}"
+                    [style.width.px]="column_status"
+                  >
+                    <!-- <ng-select [items]="statuses" [virtualScroll]="true" bindLabel="name"
+                                            bindValue="id" placeholder="Status" [(ngModel)]="column.searchValue"
+                                            (change)="onFilterChange()">
+                                        </ng-select> -->
+                  </th>
+                </ng-container>
+                <ng-container *ngIf="column.property == 'actions'">
+                  <th
+                    class="bg-white text-left header_column_{{
+                      column.property
+                    }}"
+                    [style.width.px]="column_actions"
+                  ></th>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="data.length > 0 && isLoading != true">
+          <ng-container *ngFor="let row of data; let i = index">
+            <tr>
+              <td
+                class="header_column_profile_picture"
+                [style.width.px]="column_profile_picture"
+                *ngIf="visibleColumns('profile_picture')"
+              >
+                <div class="d-flex align-items-center">
+                  <div class="avatar-icon-wrapper avatar-icon-sm mr-2">
+                    <div class="avatar-icon">
+                      <img
+                        onerror="this.src='assets/images/noavatar.png'"
+                        [src]="'localhost:3000/' + row.profile_picture"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td
+                class="header_column_email"
+                [style.width.px]="column_email"
+                *ngIf="visibleColumns('email')"
+              >
+                {{ row.email }}
+              </td>
+              <td
+                class="header_column_mobile"
+                [style.width.px]="column_mobile"
+                *ngIf="visibleColumns('mobile')"
+              >
+                {{ row.mobile }}
+              </td>
+              <td
+                class="header_column_full_name"
+                [style.width.px]="column_full_name"
+                [innerHTML]="row.full_name"
+                *ngIf="visibleColumns('full_name')"
+              ></td>
+
+              <td
+                class="header_column_status"
+                [style.width.px]="column_status"
+                *ngIf="visibleColumns('status')"
+              >
+                <div *ngIf="row?.status == 1">Active</div>
+                <div *ngIf="row?.status != 1">Deactive</div>
+              </td>
+              <td
+                class="header_column_actions"
+                [style.width.px]="column_actions"
+              >
+                <div style="position: relative">
+                  <div class="table-action" style="display: inline-block">
+                    <button (click)="onEdit(row)" type="button" class="btn btn-primary">
+                      Edit
+                    </button>
+                    <button type="button" (click)="onDelete(row)" class="btn btn-secondary pl-1">
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="data.length == 0 && isLoading != true">
+          <div class="text-center mb-3 mt-3">No records found</div>
+        </ng-container>
+        <ng-container *ngIf="isLoading">
+          <tr>
+            <td colspan="11">
+              <div class="text-center mb-3 mt-3">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
