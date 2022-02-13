@@ -2,7 +2,7 @@
     <div class="sidebar-navigation-min">
       <ul>
       <li  [ngClass]="{'manu-option-active': routerUrl == '/admin/users'}">
-           <a  class="manu-option" [ngClass]="{'manu-option-active': routerUrl == '/admin/users'}" href="javascript:void(0)" routerLink="'/admin/user'" 
+           <a  class="manu-option" [ngClass]="{'manu-option-active': routerUrl == '/admin/users'}"  href="javascript:void(0)"  [routerLink]="['/admin/users']" 
             >
             <span>
               <span class="sidebar-icon-wrapper"></span>

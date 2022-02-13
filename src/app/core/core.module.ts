@@ -10,6 +10,7 @@ import { AdminSiderbarComponent } from './layout-parts/admin/admin-siderbar/admi
 import { ResizableModule } from 'angular-resizable-element';
 import { TableSortColumnComponent } from './componenets/table-sort-column/table-sort-column.component';
 import { ToastrModule } from 'ngx-toastr';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     ResizableModule,
     ToastrModule.forRoot(),
+    RouterModule,
   ],
   exports: [
     HeaderComponent,
@@ -43,6 +45,7 @@ import { ToastrModule } from 'ngx-toastr';
     ResizableModule,
     TableSortColumnComponent,
     ToastrModule,
+    RouterModule,
   ],
 })
 export class CoreModule {}
