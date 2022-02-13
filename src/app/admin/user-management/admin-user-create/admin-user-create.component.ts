@@ -59,7 +59,6 @@ export class AdminUserCreateComponent implements OnInit {
   initForm() {
     this.registrationForm = this.fb.group({
       email: new FormControl("", [Validators.required, Validators.email]),
-      password: new FormControl("", [Validators.required]),
       name: new FormControl("", [Validators.required]),
       mobile: new FormControl("", [Validators.required]),
       gender: new FormControl("", [Validators.required]),

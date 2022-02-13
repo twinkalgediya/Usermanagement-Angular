@@ -24,7 +24,7 @@ export class UserAuthService {
   }
 
   public register(body: any) {
-    return this.baseService.post('auth/register', body, false).pipe(
+    return this.baseService.uploadPost('auth/register', body).pipe(
       map<any, any>(
         (response) => {
           return response;
