@@ -6,9 +6,9 @@ import { AdminAuthService } from 'src/app/core/service/admin-api/admin/admin-aut
 import { AuthService } from 'src/app/core/service/auth/auth.service';
 
 @Component({
-  selector: 'app-admin-login',
-  templateUrl: './admin-login.component.html',
-  styleUrls: ['./admin-login.component.scss'],
+  selector: "app-admin-login",
+  templateUrl: "./admin-login.component.html",
+  styleUrls: ["./admin-login.component.scss"],
 })
 export class AdminLoginComponent implements OnInit {
   //#region  DECLARE VARIABLES
@@ -29,7 +29,7 @@ export class AdminLoginComponent implements OnInit {
 
   initForm() {
     this.loginForm = this.fb.group({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl("", [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required]),
     });
   }
@@ -44,13 +44,14 @@ export class AdminLoginComponent implements OnInit {
       email: this.f.email.value,
       password: this.f.password.value,
     }
-    this.adminAuth.login(loginModel).subscribe(
+    this.adminAuth.login(this.loginForm.value).subscribe(
       (sessionModel: any) => {
         if (sessionModel.access_token !== undefined) {
           this.adminAuthService.clearToken();
           localStorage.setItem("admintoken", sessionModel.access_token);
           this.adminAuthService.setAdminDetail(sessionModel);
           this.adminAuthService._profileModel.next(sessionModel);
+          this.router.navigate(['/admin/users']);
         }
       }, (error: any) => {
         if (error.status == 422) {

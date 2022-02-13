@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BaseService } from '../../base/base.service';
 import { map } from 'rxjs/operators';
+import { BaseService } from '../../base/base.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +14,7 @@ export class AdminAuthService {
   login(body: any) {
     return this.baseService.post('adminauth/login', body, false).pipe(map<any, any>(
       (data: any) => {
-        if (data.status === 200) {
+        if (data.status === 1) {
           localStorage.setItem('admintoken', data.data.token);
         }
         return data;

@@ -195,7 +195,23 @@
         </div>
       </div>
     </div>
-
+    <!-- <div class="form-group m-1">
+      <label for="exampleInputmobile1">Profile</label>
+      <input
+        formControlName="profile_picture"
+        type="file"
+        class="form-control"
+        id="exampleInputmobile1"
+        placeholder="mobile"
+        (change)="handleFileInput($event)"
+      />
+      <div
+        
+        class="invalid-feedback"
+      >
+        <div>mobile is required</div>
+      </div>
+    </div> -->
     <button type="submit" class="btn btn-primary ml-1 mt-2">Submit</button>
     <a class="float-right" style="float: right;" href="javascript:void(0)" [routerLink]="['/login']">Login</a>
   </form>
