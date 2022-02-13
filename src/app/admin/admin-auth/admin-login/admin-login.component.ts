@@ -46,9 +46,10 @@ export class AdminLoginComponent implements OnInit {
     }
     this.adminAuth.login(this.loginForm.value).subscribe(
       (sessionModel: any) => {
-        if (sessionModel.access_token !== undefined) {
+        console.log(sessionModel);
+        if (sessionModel.token !== undefined) {
           this.adminAuthService.clearToken();
-          localStorage.setItem("admintoken", sessionModel.access_token);
+          localStorage.setItem("admintoken", sessionModel.token);
           this.adminAuthService.setAdminDetail(sessionModel);
           this.adminAuthService._profileModel.next(sessionModel);
           this.router.navigate(['/admin/users']);

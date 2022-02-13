@@ -67,12 +67,12 @@
                     />
                   </th>
                 </ng-container>
-                <ng-container *ngIf="column.property == 'full_name'">
+                <ng-container *ngIf="column.property == 'name'">
                   <th
                     class="bg-white text-left header_column_{{
                       column.property
                     }}"
-                    [style.width.px]="column_full_name"
+                    [style.width.px]="column_name"
                   >
                     <input
                       class="form-control"
@@ -144,10 +144,10 @@
                 {{ row.mobile }}
               </td>
               <td
-                class="header_column_full_name"
-                [style.width.px]="column_full_name"
-                [innerHTML]="row.full_name"
-                *ngIf="visibleColumns('full_name')"
+                class="header_column_name"
+                [style.width.px]="column_name"
+                [innerHTML]="row.name"
+                *ngIf="visibleColumns('name')"
               ></td>
 
               <td

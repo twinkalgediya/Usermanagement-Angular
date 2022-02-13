@@ -18,7 +18,7 @@ export class AdminUserListComponent implements OnInit {
   data = new Array();
   column_email = 150;
   column_mobile = 150;
-  column_full_name = 100;
+  column_name = 100;
   column_status = 100;
   column_actions = 100;
   column_profile_picture = 100;
@@ -27,8 +27,8 @@ export class AdminUserListComponent implements OnInit {
   constructor(
     public changeDetection: ChangeDetectorRef,
     public userService: UserService,
-    public router:Router
-  ) {}
+    public router: Router
+  ) { }
 
   ngOnInit(): void {
     this.configureList(true);
@@ -72,11 +72,11 @@ export class AdminUserListComponent implements OnInit {
         },
         {
           name: 'User Name',
-          property: 'full_name',
+          property: 'name',
           visible: true,
           datatype: 'string',
           searchable: true,
-          searchfield: 'full_name',
+          searchfield: 'name',
           sortOrder: '',
           isShowinHideList: true,
           column_width: 248,
@@ -175,18 +175,15 @@ export class AdminUserListComponent implements OnInit {
     }
   }
 
-  onResizeEnd(event: ResizeEvent, columnName: string) {}
+  onResizeEnd(event: ResizeEvent, columnName: string) { }
 
   loadData() {
-    console.log('this.requestParamModel.sorts: ', this.requestParamModel.sorts);
     if (!this.requestParamModel.sorts) {
       this.columns[0].sortOrder = 'desc';
       this.requestParamModel.setSorting(this.columns);
     }
-    this.changeDetection.markForCheck();
     this.data = [];
     this.isLoading = true;
-    this.isLoading = false;
     this.changeDetection.detectChanges();
     this.userService.getUserList(this.requestParamModel).subscribe(
       (dataList: PaginationModel<any>) => {
@@ -195,21 +192,22 @@ export class AdminUserListComponent implements OnInit {
         this.data = dataList.data;
       },
       (error: HttpErrorResponse) => {
+        console.log('asdsad', error);
         this.isLoading = false;
       }
     );
   }
 
-  onEdit(data:any){
+  onEdit(data: any) {
     console.log(data);
     this.router.navigate(['/users/', data._id]);
   };
 
-  onDelete(data:any){
+  onDelete(data: any) {
     console.log(data);
-    this.userService.deleteUser(data._id).subscribe((data:any)=>{
+    this.userService.deleteUser(data._id).subscribe((data: any) => {
       this.loadData();
-    },(error:HttpErrorResponse)=>{
+    }, (error: HttpErrorResponse) => {
 
     });
   }

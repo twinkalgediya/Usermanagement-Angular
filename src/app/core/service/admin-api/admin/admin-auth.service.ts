@@ -17,7 +17,7 @@ export class AdminAuthService {
         if (data.status === 1) {
           localStorage.setItem('admintoken', data.data.token);
         }
-        return data;
+        return data?.data;
       },
       (error: any) => {
         return error;

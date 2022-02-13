@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class BaseService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   private readonly API_URL: string = environment.apiUrl;
 
   private getURL(url: string, requestParamModel?: any): string {
@@ -41,7 +41,7 @@ export class BaseService {
     });
   }
 
-  post(url: string, bodyModel: any,isAuthorized:boolean = true) {
+  post(url: string, bodyModel: any, isAuthorized: boolean = true) {
     const fullURL = this.getURL(url);
     const headers = this.getHeaders(isAuthorized);
     return this.http.post(fullURL, bodyModel, {

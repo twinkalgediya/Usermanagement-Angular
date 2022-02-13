@@ -11,7 +11,7 @@ import { BaseService } from '../../base/base.service';
   providedIn: "root",
 })
 export class UserService {
-  constructor(public baseService: BaseService) {}
+  constructor(public baseService: BaseService) { }
 
   getUserList(
     requestParamModel: RequestParamModel
@@ -21,6 +21,7 @@ export class UserService {
         (response: any) => {
           const userList = new PaginationModel<IUser>();
           const headers = response.body.data;
+          console.log('hhhh', headers);
           userList.setHeaders(headers);
           userList.data = response.body.data.data as IUser[];
           return userList;
@@ -42,7 +43,7 @@ export class UserService {
         (response) => {
           return response.body.data as IUser;
         },
-        (err:any) => {
+        (err: any) => {
           return err;
         }
       )

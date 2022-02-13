@@ -5,6 +5,7 @@ export class PaginationModel<T> {
   currentPage!: number;
   data!: T[];
   setHeaders(headers: any): any {
+    console.log('header', headers);
     this.totalCount = +headers.total;
     this.pageSize = +headers.limit;
     this.pageCount = +headers.pages;

@@ -2,119 +2,78 @@
   <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
     <div class="form-group m-1">
       <label for="exampleInputEmail1">Email address</label>
-      <input
-        type="email"
-        formControlName="email"
-        class="form-control"
-        [ngClass]="{
+      <input type="email" formControlName="email" class="form-control" [ngClass]="{
           'is-invalid':
             (f.email.invalid && (f.email.touched ||
             submitted)) ||
             f.email.errors?.apiError,
           'is-valid': (f.email.touched || submitted) && !f.email.invalid
-        }"
-        id="exampleInputEmail1"
-        aria-describedby="emailHelp"
-        placeholder="Enter email"
-      />
-      <div
-        *ngIf="{
+        }" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+      <div *ngIf="{
           'is-invalid':
             (f.email.invalid && (f.email.touched ||
             submitted)) ||
             f.email.errors?.apiError,
           'is-valid': (f.email.touched || submitted) && !f.email.invalid
-        }"
-        class="invalid-feedback"
-      >
+        }" class="invalid-feedback">
         <div *ngIf="f?.email?.errors?.required">Name is required</div>
         <div *ngIf="f?.email?.errors?.pattern">Name must be valid</div>
       </div>
     </div>
     <div class="form-group m-1">
       <label for="exampleInputPassword1">Password</label>
-      <input
-        formControlName="password"
-        type="password"
-        [ngClass]="{
+      <input formControlName="password" type="password" [ngClass]="{
           'is-invalid':
             (f.password.invalid && (f.password.touched ||
             submitted)) ||
             f.password.errors?.apiError,
           'is-valid': (f.password.touched || submitted) && !f.password.invalid
-        }"
-        class="form-control"
-        id="exampleInputPassword1"
-        placeholder="Password"
-      />
-      <div
-        *ngIf="{
+        }" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+      <div *ngIf="{
           'is-invalid':
             (f.password.invalid && (f.password.touched ||
             submitted)) ||
             f.password.errors?.apiError,
           'is-valid': (f.password.touched || submitted) && !f.password.invalid
-        }"
-        class="invalid-feedback"
-      >
+        }" class="invalid-feedback">
         <div *ngIf="f?.password?.errors?.required">Password is required</div>
       </div>
     </div>
     <div class="form-group m-1">
       <label for="exampleInputname1">name</label>
-      <input
-        formControlName="name"
-        type="name"
-        [ngClass]="{
+      <input formControlName="name" type="name" [ngClass]="{
           'is-invalid':
             (f.name.invalid && (f.name.touched ||
             submitted)) ||
             f.name.errors?.apiError,
           'is-valid': (f.name.touched || submitted) && !f.name.invalid
-        }"
-        class="form-control"
-        id="exampleInputname1"
-        placeholder="name"
-      />
-      <div
-        *ngIf="{
+        }" class="form-control" id="exampleInputname1" placeholder="name" />
+      <div *ngIf="{
           'is-invalid':
             (f.name.invalid && f.name.touched) ||
             submitted ||
             f.name.errors?.apiError,
           'is-valid': (f.name.touched || submitted) && !f.name.invalid
-        }"
-        class="invalid-feedback"
-      >
+        }" class="invalid-feedback">
         <div *ngIf="f?.name?.errors?.required">name is required</div>
       </div>
     </div>
     <div class="form-group m-1">
       <label for="exampleInputmobile1">mobile</label>
-      <input
-        formControlName="mobile"
-        type="mobile"
-        [ngClass]="{
+      <input formControlName="mobile" type="mobile" [ngClass]="{
           'is-invalid':
             (f.mobile.invalid && (f.mobile.touched ||
             submitted)) ||
             f.mobile.errors?.apiError,
           'is-valid': (f.mobile.touched || submitted) && !f.mobile.invalid
-        }"
-        class="form-control"
-        id="exampleInputmobile1"
-        placeholder="mobile"
-      />
-      <div
-        *ngIf="{
+        }" class="form-control" id="exampleInputmobile1" placeholder="mobile" />
+      <div *ngIf="{
           'is-invalid':
             (f.mobile.invalid && (f.mobile.touched ||
             submitted)) ||
             f.mobile.errors?.apiError,
           'is-valid': (f.mobile.touched || submitted) && !f.mobile.invalid
-        }"
-        class="invalid-feedback"
-      >
+        }" class="invalid-feedback">
         <div *ngIf="f?.mobile?.errors?.required">mobile is required</div>
       </div>
     </div>
@@ -122,56 +81,40 @@
       <label for="exampleInputmobile1">Gender</label>
       <div class="d-flex">
         <div class="form-check form-check-inline">
-          <input
-            [ngClass]="{
+          <input [ngClass]="{
               'is-invalid':
                 (f.gender.invalid && (f.gender.touched ||
                 submitted)) ||
                 f.gender.errors?.apiError,
               'is-valid': (f.gender.touched || submitted) && !f.gender.invalid
-            }"
-             formControlName="gender"
-            class="form-check-input"
-            type="radio"
-            name="gender"
-            id="inlineRadio1"
-            value="male"
-          />
+            }" formControlName="gender" class="form-check-input" type="radio" name="gender" id="inlineRadio1"
+            value="male" />
           <label class="form-check-label" for="inlineRadio1">Male</label>
         </div>
         <div class="form-check form-check-inline">
-          <input
-          [ngClass]="{
+          <input [ngClass]="{
               'is-invalid':
                 (f.gender.invalid && (f.gender.touched ||
                 submitted)) ||
                 f.gender.errors?.apiError,
               'is-valid': (f.gender.touched || submitted) && !f.gender.invalid
-            }"
-             formControlName="gender"
-            class="form-check-input"
-            type="radio"
-            name="gender"
-            id="inlineRadio2"
-            value="female"
-          />
+            }" formControlName="gender" class="form-check-input" type="radio" name="gender" id="inlineRadio2"
+            value="female" />
           <label class="form-check-label" for="inlineRadio2">Female</label>
         </div>
-         <div
-        *ngIf="{
+        <div *ngIf="{
           'is-invalid':
             (f.gender.invalid && (f.gender.touched ||
             submitted)) ||
             f.gender.errors?.apiError,
           'is-valid': (f.gender.touched || submitted) && !f.gender.invalid
-        }"
-        class="invalid-feedback"
-      >
-        <div *ngIf="f?.gender?.errors?.required">gender is required</div>
-      </div>
+        }" class="invalid-feedback">
+          <div *ngIf="f?.gender?.errors?.required">gender is required</div>
+        </div>
       </div>
     </div>
 
     <button type="submit" class="btn btn-primary ml-1 mt-2">Submit</button>
+    <a class="float-right" style="float: right;" href="javascript:void(0)" [routerLink]="['/admin/login']">Login</a>
   </form>
 </div>
