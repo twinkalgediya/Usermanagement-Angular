@@ -2,66 +2,56 @@
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-group m-1">
       <label for="exampleInputEmail1">Email address</label>
-      <input
-        type="email"
-        formControlName="email"
-        class="form-control"
-        [ngClass]="{
+      <input type="email" formControlName="email" class="form-control" [ngClass]="{
           'is-invalid':
             (f.email.invalid && (f.email.touched ||
             submitted)) ||
             f.email.errors?.apiError,
           'is-valid': (f.email.touched || submitted) && !f.email.invalid
-        }"
-        id="exampleInputEmail1"
-        aria-describedby="emailHelp"
-        placeholder="Enter email"
-      />
-      <div
-        *ngIf="{
+        }" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+      <div *ngIf="{
           'is-invalid':
             (f.email.invalid && (f.email.touched ||
             submitted)) ||
             f.email.errors?.apiError,
           'is-valid': (f.email.touched || submitted) && !f.email.invalid
-        }"
-        class="invalid-feedback"
-      >
+        }" class="invalid-feedback">
         <div *ngIf="f?.email?.errors?.required">Name is required</div>
         <div *ngIf="f?.email?.errors?.pattern">Name must be valid</div>
       </div>
     </div>
     <div class="form-group m-1">
       <label for="exampleInputPassword1">Password</label>
-      <input
-        formControlName="password"
-        type="password"
-        [ngClass]="{
+      <input formControlName="password" type="password" [ngClass]="{
           'is-invalid':
             (f.password.invalid && (f.password.touched ||
             submitted)) ||
             f.password.errors?.apiError,
           'is-valid': (f.password.touched || submitted) && !f.password.invalid
-        }"
-        class="form-control"
-        id="exampleInputPassword1"
-        placeholder="Password"
-      />
-      <div
-        *ngIf="{
+        }" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+      <div *ngIf="{
           'is-invalid':
             (f.password.invalid && (f.password.touched ||
             submitted)) ||
             f.password.errors?.apiError,
           'is-valid': (f.password.touched || submitted) && !f.password.invalid
-        }"
-        class="invalid-feedback"
-      >
+        }" class="invalid-feedback">
         <div *ngIf="f?.password?.errors?.required">Password is required</div>
       </div>
     </div>
-     
-    <button type="submit" class="btn btn-primary ml-1 mt-2">Submit</button>
+
+    <button type="submit" class="btn btn-primary ml-1 mt-2">Sign in</button>
     <a class="float-right" style="float: right;" href="javascript:void(0)" [routerLink]="['/register']">New User?</a>
+    <div class="row">
+      <div class="col">
+        <h4 class="or-with">Or with</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col singin-social-btn social-login-icon-button">
+        <a href="javascript:;" class="btn grey-bordered-btn" (click)="fbLogin()">Facebook</a>
+        <a href="javascript:;" class="btn grey-bordered-btn" (click)="googleLogin()">Google</a>
+      </div>
+    </div>
   </form>
 </div>

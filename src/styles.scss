@@ -1,4 +1,51 @@
+
+
 .main-div-sidebar {
     float: left;
     width: 10%;
 }
+.center {
+    margin:40px;
+  }
+  .grey-bordered-btn {
+    background: #fff;
+    text-align: center;
+    border-radius: 35px;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 7px 20px;
+    color: #222324;
+    border: 2px solid #222324;
+    line-height: 24px;
+  }
+  .or-with {
+    text-align : center;
+    color      : #222324;
+    font-size  : 16px;
+    line-height: 20px;
+    font-weight: 700;
+    margin     : 24px 0 15px;
+  }
+  .singin-social-btn {
+    text-align: center;
+    font-size : 0;
+  }
+  
+  .singin-social-btn .btn {
+    min-width            : 131px;
+    padding              : 7px 15px;
+    background           : #fff;
+    border               : 2px solid #AAB0B1;
+    -webkit-border-radius: 30px;
+    border-radius        : 30px;
+    color                : #AAB0B1;
+    font-size            : 13px;
+    font-weight          : bold;
+    line-height          : 24px;
+    font-family          : 'Montserrat';
+    text-decoration      : none;
+  }
+  
+  .singin-social-btn .btn+.btn {
+    margin-left: 9px;
+  }

@@ -5,7 +5,9 @@
 export const environment = {
   production: false,
   // apiUrl: "http://localhost:5004/api/",
-  apiUrl: "http://localhost:3000/api/",
+  apiUrl: "http://localhost:5004/api/",
+  googleAppId:'285694751628-3fmg2tgov1h6ic0ck7255p1gk2vjh3vi.apps.googleusercontent.com',
+  facebookAppId:'121104579866021',
 };
 
 /*

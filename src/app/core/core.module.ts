@@ -11,7 +11,7 @@ import { ResizableModule } from 'angular-resizable-element';
 import { TableSortColumnComponent } from './componenets/table-sort-column/table-sort-column.component';
 import { ToastrModule } from 'ngx-toastr';
 import { RouterModule } from '@angular/router';
-
+import { NgxNavbarModule } from 'ngx-bootstrap-navbar';
 
 @NgModule({
   declarations: [
@@ -31,6 +31,7 @@ import { RouterModule } from '@angular/router';
     ResizableModule,
     ToastrModule.forRoot(),
     RouterModule,
+    NgxNavbarModule
   ],
   exports: [
     HeaderComponent,
@@ -46,6 +47,7 @@ import { RouterModule } from '@angular/router';
     TableSortColumnComponent,
     ToastrModule,
     RouterModule,
+    NgxNavbarModule
   ],
 })
 export class CoreModule {}

@@ -1,4 +1,4 @@
 <app-header></app-header>
-<p>Welcome To system user! <span *ngIf="userModel"> {{userModel}}</span></p>
+<p>Welcome To system user! <span *ngIf="userModel.name"> {{userModel.name}}</span></p>
 <button (click)="logout()">Logout</button>
 <app-footer></app-footer>

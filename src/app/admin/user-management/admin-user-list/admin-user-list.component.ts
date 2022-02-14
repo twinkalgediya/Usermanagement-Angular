@@ -19,7 +19,7 @@ export class AdminUserListComponent implements OnInit {
   column_email = 150;
   column_mobile = 150;
   column_name = 100;
-  column_status = 100;
+  column_gender = 100;
   column_actions = 100;
   column_profile_picture = 100;
   columns!: ColumnListModel[];
@@ -82,12 +82,12 @@ export class AdminUserListComponent implements OnInit {
           column_width: 248,
         },
         {
-          name: 'Status',
-          property: 'status',
+          name: 'Gender',
+          property: 'gender',
           visible: true,
           searchable: true,
           datatype: 'number',
-          searchfield: 'status',
+          searchfield: 'gender',
           sortOrder: '',
           isShowinHideList: true,
           column_width: 159,

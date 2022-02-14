@@ -28,6 +28,15 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
+        path: 'users/create',
+        component: AdminUserCreateComponent,
+        data: {
+          breadcrumb: 'Users',
+          title: 'Users',
+          parent: 'admin',
+        },
+      },
+      {
         path: 'users/:id',
         component: AdminUserCreateComponent,
         data: {

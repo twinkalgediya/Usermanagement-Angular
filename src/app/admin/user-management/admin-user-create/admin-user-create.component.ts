@@ -23,6 +23,7 @@ export class AdminUserCreateComponent implements OnInit {
   public submitted: boolean = false;
   public isLoading: boolean = false;
   public userModel: any;
+  public userId: any;
   //#endregionor() { }
 
   constructor(
@@ -31,12 +32,12 @@ export class AdminUserCreateComponent implements OnInit {
     public router: Router,
     public alertService: ToastrService,
     public activeRouter: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.initForm();
     this.activeRouter.params.subscribe((params) => {
-      console.log(params);
+      this.userId = params.id ? params.id : '';
+      this.initForm();
       if (params.id) {
         this.userService
           .getUserAllData(params.id, new RequestParamModel())
@@ -54,6 +55,8 @@ export class AdminUserCreateComponent implements OnInit {
               }
             }
           });
+      } else {
+        this.initForm();
       }
     });
   }
@@ -63,14 +66,24 @@ export class AdminUserCreateComponent implements OnInit {
   }
 
   initForm() {
-    this.registrationForm = this.fb.group({
-      email: new FormControl("", [Validators.required, Validators.email]),
-      name: new FormControl("", [Validators.required]),
-      mobile: new FormControl("", [Validators.required]),
-      gender: new FormControl("", [Validators.required]),
-      profile_picture: new FormControl("", []),
-      strength: this.fb.array([this.createStrength()]),
-    });
+    if (!this.userId) {
+      this.registrationForm = this.fb.group({
+        email: new FormControl("", [Validators.required, Validators.email]),
+        password: new FormControl("", [Validators.required]),
+        name: new FormControl("", [Validators.required]),
+        mobile: new FormControl("", [Validators.required]),
+        gender: new FormControl("", [Validators.required]),
+        strength: this.fb.array([this.createStrength()]),
+      });
+    } else {
+      this.registrationForm = this.fb.group({
+        email: new FormControl("", [Validators.required, Validators.email]),
+        name: new FormControl("", [Validators.required]),
+        mobile: new FormControl("", [Validators.required]),
+        gender: new FormControl("", [Validators.required]),
+        strength: this.fb.array([this.createStrength()]),
+      });
+    }
   }
 
   onSubmit() {
