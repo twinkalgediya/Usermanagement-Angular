@@ -12,7 +12,8 @@ import { TableSortColumnComponent } from './componenets/table-sort-column/table-
 import { ToastrModule } from 'ngx-toastr';
 import { RouterModule } from '@angular/router';
 import { NgxNavbarModule } from 'ngx-bootstrap-navbar';
-
+import { PaginationComponent } from './componenets/pagination/pagination.component';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -21,6 +22,7 @@ import { NgxNavbarModule } from 'ngx-bootstrap-navbar';
     AdminFooterComponent,
     AdminSiderbarComponent,
     TableSortColumnComponent,
+    PaginationComponent,
   ],
 
   imports: [
@@ -31,7 +33,8 @@ import { NgxNavbarModule } from 'ngx-bootstrap-navbar';
     ResizableModule,
     ToastrModule.forRoot(),
     RouterModule,
-    NgxNavbarModule
+    NgxNavbarModule,
+    PaginationModule
   ],
   exports: [
     HeaderComponent,
@@ -47,7 +50,8 @@ import { NgxNavbarModule } from 'ngx-bootstrap-navbar';
     TableSortColumnComponent,
     ToastrModule,
     RouterModule,
-    NgxNavbarModule
+    NgxNavbarModule,
+    PaginationComponent
   ],
 })
-export class CoreModule {}
+export class CoreModule { }

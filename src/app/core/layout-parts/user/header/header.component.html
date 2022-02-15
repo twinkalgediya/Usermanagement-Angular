@@ -1,3 +1,15 @@
-<nav class="nav nav-pills nav-justified">
-  <a class="nav-item nav-link active" href="javascript:void(0)">User Management</a>
+<nav ngxNavbarDynamicExpand class="navbar-light bg-light">
+  <a class="navbar-brand">User Management</a>
+  <button class="navbar-toggler" type="button" (click)="collapse.toggle()" aria-controls="main-nav"
+    aria-expanded="false" aria-label="Navigáció kapcsoló">
+    <span class="navbar-toggler-icon d-flex align-items-center justify-content-center">
+    </span>
+  </button>
+  <ngx-navbar-collapse id="main-nav" #collapse="ngxNavbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()" style="float: right;">Logout</a>
+      </li>
+    </ul>
+  </ngx-navbar-collapse>
 </nav>

@@ -88,6 +88,7 @@ export class AdminUserCreateComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    console.log(this.registrationForm.invalid);
     if (this.registrationForm.invalid) {
       return;
     }

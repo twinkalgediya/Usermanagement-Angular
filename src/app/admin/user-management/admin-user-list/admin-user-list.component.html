@@ -124,4 +124,6 @@
       </tbody>
     </table>
   </div>
+  <app-pagination [disabled]="isLoading" [requestParamModel]="requestParamModel" (pageChange)="pageIndexChanged($event)"
+    (sizeChange)="pageSizeChanged($event)"></app-pagination>
 </div>
