@@ -1,0 +1,10 @@
+<div class="card-footer py-3 d-flex justify-content-end"
+    *ngIf="requestParamModel !== undefined && requestParamModel.totalCount!== undefined">
+    <div class="pagination-wrap">
+        <pagination [disabled]="disabled" (numPages)="requestParamModel.pageCount = $event"
+            (pageChanged)="pageIndexChanged($event)" [(ngModel)]="requestParamModel.pageIndex"
+            [itemsPerPage]="requestParamModel.pageSize" [maxSize]="maxSize" [totalItems]="requestParamModel.totalCount"
+            class="custome_pagination" [boundaryLinks]="boundaryLinks" [rotate]="true">
+        </pagination>
+    </div>
+</div>

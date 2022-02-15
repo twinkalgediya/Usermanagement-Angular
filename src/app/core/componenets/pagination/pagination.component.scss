@@ -1,0 +1,12 @@
+.custome_pagination::ng-deep .page-item.active .page-link {
+    z-index: 1;
+    color: #FFFFFF;
+    background-color:#222324 !important;
+    border-color: #222324;
+}
+.remove-boundaries.pagination>li:last-child>a, 
+.remove-boundaries.pagination>li:last-child>span,
+.remove-boundaries.pagination>li:first-child>a, 
+.remove-boundaries.pagination>li:first-child>span {
+  display: none;
+}
